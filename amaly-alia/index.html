@@ -103,16 +103,23 @@
             transform-style: preserve-3d;
             backface-visibility: hidden;
             pointer-events: none;
-            transition: opacity 0.5s ease;
+            
+            /* FIX: Hides the card elements completely when they are inactive */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
 
+        /* FIX: Re-displays the current element smoothly when triggered */
         .node-3d.active-node {
+            opacity: 1;
+            visibility: visible;
             pointer-events: auto;
         }
 
         /* Kad Premium Terapung */
         .premium-card {
-            background: rgba(252, 250, 242, 0.9);
+            background: rgba(252, 250, 242, 0.93);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(99, 38, 57, 0.15);
             padding: 3rem 2rem;
@@ -136,7 +143,6 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            /* Memastikan latar belakang putih pada png hilang dan bersatu dengan warna kertas */
             mix-blend-mode: multiply; 
         }
 
@@ -219,75 +225,67 @@
                 box-shadow: 0 0 0 0 rgba(99, 38, 57, 0);
             }
         }
+
         /* ============================================================== */
-/* MOBILE RESPONSIVE TWEAKS (Max-width: 768px)                  */
-/* ============================================================== */
-@media (max-width: 768px) {
-    /* 1. Optimize 3D Viewport Perspective */
-    /* Decreasing perspective prevents elements from clipping off the edges on narrow screens */
-    #viewport-3d {
-        perspective: 900px; 
-    }
+        /* SMARTPHONE RESPONSIVE MEDIA QUERIES                            */
+        /* ============================================================== */
+        @media (max-width: 768px) {
+            #viewport-3d {
+                perspective: 900px; /* Tightens camera view for narrow ports */
+            }
 
-    /* 2. Compact the Premium Card */
-    .premium-card {
-        padding: 2rem 1.25rem; /* Reduce padding to save screen real estate */
-        width: 92vw; /* Maximize width while keeping a small edge buffer */
-    }
+            .premium-card {
+                padding: 2.2rem 1.25rem; 
+                width: 92vw;
+                background: rgba(252, 250, 242, 0.99) !important; /* Blocks out anything stacking or drifting behind the text */
+            }
 
-    /* 3. Adjust the Double Door Gate Typography */
-    #gate-content .text-8xl {
-        font-size: 5.5rem; /* Scale down the giant 'A & A' monogram */
-        line-height: 1;
-    }
-    
-    #gate-content h2 {
-        font-size: 2.25rem; /* Scale down 'Amaly & Alia' */
-    }
+            #gate-content .text-8xl {
+                font-size: 5.5rem; 
+                line-height: 1;
+            }
+            
+            #gate-content h2 {
+                font-size: 2.25rem; 
+            }
 
-    /* 4. Top Navigation Bar Constraints */
-    .fixed.top-6.left-6.right-24 {
-        right: 1.5rem; 
-        left: 1.5rem;
-    }
-    
-    /* 5. Restrict Batik Background Sizes */
-    /* Prevents the background flowers from overwhelming the foreground text on small screens */
-    .batik-container-3d {
-        max-width: 85vw !important; 
-    }
+            .fixed.top-6.left-6.right-24 {
+                right: 1.5rem; 
+                left: 1.5rem;
+            }
+            
+            .batik-container-3d {
+                max-width: 85vw !important; 
+            }
 
-    /* 6. Form Optimization */
-    #rsvpForm button {
-        width: 100%;
-        padding: 1rem; /* Larger touch target for mobile tapping */
-    }
-}
+            #rsvpForm button {
+                width: 100%;
+                padding: 1rem; 
+            }
 
-/* ============================================================== */
-/* EXTRA SMALL DEVICES (Max-width: 480px)                         */
-/* ============================================================== */
-@media (max-width: 480px) {
-    /* Shrink the main headings slightly more for very small phones */
-    .premium-card h1 {
-        font-size: 2.75rem; 
-        line-height: 1.2;
-    }
-    
-    .premium-card h3.font-script {
-        font-size: 2.25rem; 
-    }
+            /* Prevents loose decorative backgrounds from drifting out into text fields */
+            #camera-rig > .batik-container-3d {
+                opacity: 0.25 !important;
+                transform: scale(0.65) !important;
+            }
+        }
 
-    .premium-card h2.font-script {
-        font-size: 2.5rem;
-    }
+        @media (max-width: 480px) {
+            .premium-card h1 {
+                font-size: 2.6rem; 
+                line-height: 1.2;
+            }
+            
+            .premium-card h3.font-script,
+            .premium-card h2.font-script {
+                font-size: 2.25rem; 
+            }
 
-    /* Scale down the interactive SVG couple slightly more */
-    #interactive-couple {
-        width: 150px;
-        height: 150px;
-    }
-}
+            #interactive-couple {
+                width: 145px;
+                height: 145px;
+            }
+        }
     </style>
 </head>
 <body class="selection:bg-maroon selection:text-paper">
