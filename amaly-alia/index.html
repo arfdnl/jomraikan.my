@@ -219,6 +219,75 @@
                 box-shadow: 0 0 0 0 rgba(99, 38, 57, 0);
             }
         }
+        /* ============================================================== */
+/* MOBILE RESPONSIVE TWEAKS (Max-width: 768px)                  */
+/* ============================================================== */
+@media (max-width: 768px) {
+    /* 1. Optimize 3D Viewport Perspective */
+    /* Decreasing perspective prevents elements from clipping off the edges on narrow screens */
+    #viewport-3d {
+        perspective: 900px; 
+    }
+
+    /* 2. Compact the Premium Card */
+    .premium-card {
+        padding: 2rem 1.25rem; /* Reduce padding to save screen real estate */
+        width: 92vw; /* Maximize width while keeping a small edge buffer */
+    }
+
+    /* 3. Adjust the Double Door Gate Typography */
+    #gate-content .text-8xl {
+        font-size: 5.5rem; /* Scale down the giant 'A & A' monogram */
+        line-height: 1;
+    }
+    
+    #gate-content h2 {
+        font-size: 2.25rem; /* Scale down 'Amaly & Alia' */
+    }
+
+    /* 4. Top Navigation Bar Constraints */
+    .fixed.top-6.left-6.right-24 {
+        right: 1.5rem; 
+        left: 1.5rem;
+    }
+    
+    /* 5. Restrict Batik Background Sizes */
+    /* Prevents the background flowers from overwhelming the foreground text on small screens */
+    .batik-container-3d {
+        max-width: 85vw !important; 
+    }
+
+    /* 6. Form Optimization */
+    #rsvpForm button {
+        width: 100%;
+        padding: 1rem; /* Larger touch target for mobile tapping */
+    }
+}
+
+/* ============================================================== */
+/* EXTRA SMALL DEVICES (Max-width: 480px)                         */
+/* ============================================================== */
+@media (max-width: 480px) {
+    /* Shrink the main headings slightly more for very small phones */
+    .premium-card h1 {
+        font-size: 2.75rem; 
+        line-height: 1.2;
+    }
+    
+    .premium-card h3.font-script {
+        font-size: 2.25rem; 
+    }
+
+    .premium-card h2.font-script {
+        font-size: 2.5rem;
+    }
+
+    /* Scale down the interactive SVG couple slightly more */
+    #interactive-couple {
+        width: 150px;
+        height: 150px;
+    }
+}
     </style>
 </head>
 <body class="selection:bg-maroon selection:text-paper">
